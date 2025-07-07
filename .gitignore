@@ -1,0 +1,7 @@
+.DS_Store
+build/*
+xcuserdata/*
+*.xcuserdatad
+*.xcuserstate
+Pods/
+*.xcworkspace

@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  BUUTSHorenko
 //
-//  Created by Serhii Horenko | CM.com on 07/07/2025.
+//  Created by Serhii Horenko on 07/07/2025.
 //
 
 import UIKit
@@ -13,7 +13,4 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
-

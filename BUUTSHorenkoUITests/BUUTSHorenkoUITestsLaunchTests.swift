@@ -2,7 +2,7 @@
 //  BUUTSHorenkoUITestsLaunchTests.swift
 //  BUUTSHorenkoUITests
 //
-//  Created by Serhii Horenko | CM.com on 07/07/2025.
+//  Created by Serhii Horenko on 07/07/2025.
 //
 
 import XCTest
