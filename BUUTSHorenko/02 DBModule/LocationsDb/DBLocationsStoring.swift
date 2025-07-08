@@ -7,9 +7,8 @@
 
 import Foundation
 
-
 public final class DBLocationsStoring: LocationsStoring {
     public func store(_ locations: [Location]) async throws {
-        //TODO: Implement storing to DB
+        // TODO: Implement storing to DB
     }
 }

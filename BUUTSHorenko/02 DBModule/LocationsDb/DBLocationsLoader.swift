@@ -7,10 +7,9 @@
 
 import Foundation
 
-
 public final class DBLocationsLoader: LocationsLoader {
     public func load() async throws -> [Location] {
-        //TODO: Implement loading from DB
+        // TODO: Implement loading from DB
         let locations: [Location] = []
         
         return locations

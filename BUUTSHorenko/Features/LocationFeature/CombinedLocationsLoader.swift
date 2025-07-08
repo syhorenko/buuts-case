@@ -20,8 +20,8 @@ public final class CombinedLocationsLoader: LocationsLoader {
     }
     
     public func load() async throws -> [Location] {
-        //TODO: Possible imrovment. Show stored items if we have so user see without waiting stored items and meanwhile load from API
-        //First we try to make API call to fetch the most recent Locations and store them to DB
+        // TODO: Possible imrovment. Show stored items if we have so user see without waiting stored items and meanwhile load from API
+        // First we try to make API call to fetch the most recent Locations and store them to DB
         do {
             allLocations = try await apiLoader.load()
             
@@ -29,7 +29,7 @@ public final class CombinedLocationsLoader: LocationsLoader {
             try? await dbStoring.store(allLocations)
         } catch {
             debugPrint("API loading failed: \(error), trying to load from DB...")
-            //If API call fails return stored items
+            // If API call fails return stored items
             do {
                 allLocations = try await dbLoader.load()
             } catch {

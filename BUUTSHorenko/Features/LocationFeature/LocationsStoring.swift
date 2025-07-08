@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public protocol LocationsStoring {
     func store(_ locations: [Location]) async throws
 }
