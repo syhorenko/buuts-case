@@ -24,9 +24,12 @@ class ViewController: UIViewController {
             url: URL(string: "https://raw.githubusercontent.com/abnamrocoesd/assignment-ios/main/locations.json")!,
             client: client
         )
-
+        let dbLoader = DBLocationsLoader()
+        let dbStoring = DBLocationsStoring()
+        
+        let combinedLoader = CombinedLocationsLoader(apiLoader: remoteLoader, dbLoader: dbLoader, dbStoring: dbStoring)
         do {
-            let locations = try await remoteLoader.load()
+            let locations = try await combinedLoader.load()
             debugPrint("Locations: \(locations)")
         } catch {
             debugPrint("Failed to load locations: \(error)")
