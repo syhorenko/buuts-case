@@ -14,6 +14,16 @@ protocol LocationsListDisplayLogic: AnyObject {
 class LocationsListViewController: BaseViewController, LocationsListDisplayLogic {
     var interactor: LocationsListBusinessLogic?
     var router: (NSObjectProtocol & LocationsListRoutingLogic & LocationsListDataPassing)?
+    
+    private var locations: [Location] = []
+    
+    override var screenTitle: String { "Locations" }
+    
+    internal lazy var customView: LocationsView = {
+        let view = LocationsView()
+        view.delegate = self
+        return view
+    }()
 
     // MARK: Setup
     
@@ -41,19 +51,39 @@ class LocationsListViewController: BaseViewController, LocationsListDisplayLogic
         }
     }
     
-    // MARK: View lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     // MARK: - Setup UI
     
-    override func buildView() { }
+    override func buildView() {
+        self.view = customView
+    }
+    
     override func applyTheme(isDark: Bool) { }
     
     // MARK: - Setup Data
     
-    override func loadData() { }
+    override func loadData() {
+        locations = [
+            Location(name: "Amsterdam", latitude: 52.3547, longitude: 4.8339),
+            Location(name: "Mumbai", latitude: 19.0824, longitude: 72.8111),
+            Location(name: "Copenhagen", latitude: 55.6713, longitude: 12.5237)
+        ]
+        customView.reloadTable()
+    }
+}
+
+// MARK: - LocationTableView Conformance
+
+extension LocationsListViewController: LocationTableView {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        locations.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as? LocationCell else {
+            return UITableViewCell()
+        }
+        let location = locations[indexPath.row]
+        cell.configure(with: location)
+        return cell
+    }
 }
