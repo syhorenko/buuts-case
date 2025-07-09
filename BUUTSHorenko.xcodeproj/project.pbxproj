@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3C6687442E1EF5CD00753A6A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3C6687432E1EF5CD00753A6A /* .swiftlint.yml */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3C367F962E1C469400581B21 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,8 @@
 		3C367F7C2E1C469300581B21 /* BUUTSHorenko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BUUTSHorenko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C367F952E1C469400581B21 /* BUUTSHorenkoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BUUTSHorenkoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C367F9F2E1C469400581B21 /* BUUTSHorenkoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BUUTSHorenkoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C6687422E1EEF6700753A6A /* BUUTSHorenko.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BUUTSHorenko.xctestplan; sourceTree = "<group>"; };
+		3C6687432E1EF5CD00753A6A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -93,6 +99,8 @@
 		3C367F732E1C469300581B21 = {
 			isa = PBXGroup;
 			children = (
+				3C6687432E1EF5CD00753A6A /* .swiftlint.yml */,
+				3C6687422E1EEF6700753A6A /* BUUTSHorenko.xctestplan */,
 				3C367FB32E1C473600581B21 /* Support Files */,
 				3C367F7E2E1C469300581B21 /* BUUTSHorenko */,
 				3C367F982E1C469400581B21 /* BUUTSHorenkoTests */,
@@ -233,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C6687442E1EF5CD00753A6A /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -78,7 +78,7 @@ opt_in_rules:
 - yoda_condition
 
 excluded:
-- RicklaxationTests
+- BUUTSHorenkoTests
 
 line_length:
     warning: 150

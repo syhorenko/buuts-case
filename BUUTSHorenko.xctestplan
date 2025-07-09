@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "49098FB2-0684-44AA-A8BC-B441B5D00860",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:BUUTSHorenko.xcodeproj",
+        "identifier" : "3C367F942E1C469400581B21",
+        "name" : "BUUTSHorenkoTests"
+      }
+    }
+  ],
+  "version" : 1
+}

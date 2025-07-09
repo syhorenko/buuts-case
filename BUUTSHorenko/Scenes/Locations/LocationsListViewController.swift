@@ -8,14 +8,15 @@
 import UIKit
 
 protocol LocationsListDisplayLogic: AnyObject {
-    
+    func displayFetchedLocations(viewModel: LocationsList.FetchLocations.ViewModel)
+    func displayError(viewModel: LocationsList.FetchLocations.ViewModel)
 }
 
 class LocationsListViewController: BaseViewController, LocationsListDisplayLogic {
     var interactor: LocationsListBusinessLogic?
     var router: (NSObjectProtocol & LocationsListRoutingLogic & LocationsListDataPassing)?
     
-    private var locations: [Location] = []
+    private var locations: [LocationsList.DisplayedLocation] = []
     
     override var screenTitle: String { "Locations" }
     
@@ -24,7 +25,7 @@ class LocationsListViewController: BaseViewController, LocationsListDisplayLogic
         view.delegate = self
         return view
     }()
-
+    
     // MARK: Setup
     
     override func setup() {
@@ -62,12 +63,35 @@ class LocationsListViewController: BaseViewController, LocationsListDisplayLogic
     // MARK: - Setup Data
     
     override func loadData() {
-        locations = [
-            Location(name: "Amsterdam", latitude: 52.3547, longitude: 4.8339),
-            Location(name: "Mumbai", latitude: 19.0824, longitude: 72.8111),
-            Location(name: "Copenhagen", latitude: 55.6713, longitude: 12.5237)
-        ]
-        customView.reloadTable()
+        Task {
+            customView.showSpinner()
+            await interactor?.fetchLocations(request: LocationsList.FetchLocations.Request())
+        }
+        
+    }
+    
+    func displayFetchedLocations(viewModel: LocationsList.FetchLocations.ViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.customView.hideSpinner()
+            self?.locations = viewModel.displayedLocations
+            self?.customView.reloadTable()
+        }
+    }
+    
+    func displayError(viewModel: LocationsList.FetchLocations.ViewModel) {
+        if let error = viewModel.error {
+            self.showErrorAlert(
+                title: error.title,
+                message: error.explanation
+            )
+            return
+        }
+    }
+    
+    private func showErrorAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
@@ -77,7 +101,7 @@ extension LocationsListViewController: LocationTableView {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         locations.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as? LocationCell else {
             return UITableViewCell()

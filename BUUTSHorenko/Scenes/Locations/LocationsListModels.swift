@@ -8,14 +8,35 @@
 import UIKit
 
 enum LocationsList {
-    // MARK: Use cases
-    
-    enum Something {
+    // MARK: Use Cases
+
+    enum FetchLocations {
         struct Request {
         }
+
         struct Response {
+            let locations: [ResponsLocation]
         }
+
         struct ViewModel {
+            let displayedLocations: [DisplayedLocation]
+            let error: ErrorLocations?
         }
+    }
+
+    struct ResponsLocation {
+        let name: String?
+        let latitude: Double
+        let longitude: Double
+    }
+    
+    struct DisplayedLocation {
+        let name: String
+        let coordinates: String
+    }
+    
+    struct ErrorLocations {
+        let title: String
+        let explanation: String
     }
 }

@@ -41,10 +41,9 @@ internal final class LocationCellView: BaseView {
         ])
     }
 
-    internal func configure(with location: Location) {
+    internal func configure(with location: LocationsList.DisplayedLocation) {
         nameLabel.text = location.name
-        coordsLabel.text = "Lat: \(location.latitude), Long: \(location.longitude)"
-        
+        coordsLabel.text = location.coordinates
     }
 
     private func applyTheme() {

@@ -35,7 +35,7 @@ internal final class LocationCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    internal func configure(with location: Location) {
+    internal func configure(with location: LocationsList.DisplayedLocation) {
         cellView.configure(with: location)
     }
 
