@@ -36,6 +36,11 @@ class BaseViewController: UIViewController {
             .foregroundColor: color,
             .font: UIFont.boldSystemFont(ofSize: 20)
         ]
+        
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
+
+        navigationController?.navigationBar.tintColor = color
 
         navigationController?.navigationBar.titleTextAttributes = attributes
     }
@@ -58,6 +63,14 @@ class BaseViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         
         applyTheme(isDark: traitCollection.userInterfaceStyle == .dark)
+    }
+    
+    internal func showErrorAlert(title: String, message: String) {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(alert, animated: true)
+        }
     }
 
     internal func prepare(for segue: UIStoryboardSegue) { }

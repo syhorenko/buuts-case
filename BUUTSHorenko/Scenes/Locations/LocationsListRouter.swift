@@ -21,7 +21,7 @@ class LocationsListRouter: NSObject, LocationsListRoutingLogic, LocationsListDat
     
     // MARK: Routing
     
-    func routeToLocationDetail(selectedLocationId: String){
+    func routeToLocationDetail(selectedLocationId: String) {
         let destinationVC = LocationDetailViewController()
         var destinationDS = destinationVC.router!.dataStore!
         passDataToLocationDetail(selectedLocationId: selectedLocationId, destination: &destinationDS)
@@ -35,7 +35,7 @@ class LocationsListRouter: NSObject, LocationsListRoutingLogic, LocationsListDat
     private func passDataToLocationDetail(selectedLocationId: String, destination: inout LocationDetailDataStore) {
         guard let selectedLocation = dataStore?.selectedLocation.first(where: { $0.id == selectedLocationId }) else { return }
         // TODO: LocationsList.DisplayedLocation should not contain latitude, longitude it should operate with id. When DB is implemented rework it.
-        let locationDetail = LocationDetail.LocationDetailModel(id: selectedLocation.id, name: selectedLocation.name, latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
+        let locationDetail = LocationDetail.DetailModel(id: selectedLocation.id, name: selectedLocation.name, latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
         
         destination.location = locationDetail
     }

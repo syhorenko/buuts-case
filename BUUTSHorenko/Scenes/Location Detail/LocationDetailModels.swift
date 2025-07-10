@@ -2,32 +2,35 @@
 //  LocationDetailModels.swift
 //  BUUTSHorenko
 //
-//  Created by Serhii Horenko | CM.com on 10/07/2025.
+//  Created by Serhii Horenko on 10/07/2025.
 //
 
 import UIKit
 
-enum LocationDetail
-{
+enum LocationDetail {
     // MARK: Use cases
     
-    enum LocationDetailModels
-    {
-        struct Request
-        {
+    enum LocationDetailModels {
+        struct Request {
         }
-        struct Response
-        {
+        struct Response {
+            let locationImage: UIImage?
+            let error: ErrorLocationImage?
         }
-        struct ViewModel
-        {
+        struct ViewModel {
+            let locationImage: UIImage?
+            let error: ErrorLocationImage?
         }
     }
     
-    struct LocationDetailModel {
+    struct DetailModel {
         let id: String
         let name: String?
         let latitude: Double
         let longitude: Double
+    }
+    struct ErrorLocationImage {
+        let title: String
+        let explanation: String
     }
 }

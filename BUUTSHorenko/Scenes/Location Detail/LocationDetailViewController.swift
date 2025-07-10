@@ -2,12 +2,14 @@
 //  LocationDetailViewController.swift
 //  BUUTSHorenko
 //
-//  Created by Serhii Horenko | CM.com on 10/07/2025.
+//  Created by Serhii Horenko on 10/07/2025.
 //
 
 import UIKit
 
 protocol LocationDetailDisplayLogic: AnyObject {
+    func displayLocationImage(viewModel: LocationDetail.LocationDetailModels.ViewModel)
+    func displayError(viewModel: LocationDetail.LocationDetailModels.ViewModel)
 }
 
 class LocationDetailViewController: BaseViewController, LocationDetailDisplayLogic {
@@ -32,6 +34,7 @@ class LocationDetailViewController: BaseViewController, LocationDetailDisplayLog
     override func loadData() {
         Task {
             customView.showSpinner()
+            await self.interactor?.loadLocationImage()
         }
     }
     
@@ -58,6 +61,28 @@ class LocationDetailViewController: BaseViewController, LocationDetailDisplayLog
             if let router = router, router.responds(to: selector) {
                 router.perform(selector, with: segue)
             }
+        }
+    }
+    
+    func displayLocationImage(viewModel: LocationDetail.LocationDetailModels.ViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.customView.hideSpinner()
+            if let image = viewModel.locationImage {
+                self?.customView.setMapImage(image)
+            }
+        }
+    }
+    
+    func displayError(viewModel: LocationDetail.LocationDetailModels.ViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.customView.hideSpinner()
+        }
+        if let error = viewModel.error {
+            self.showErrorAlert(
+                title: error.title,
+                message: error.explanation
+            )
+            return
         }
     }
 }

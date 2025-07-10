@@ -18,8 +18,6 @@ class LocationsListViewController: BaseViewController, LocationsListDisplayLogic
     
     private var locations: [LocationsList.DisplayedLocation] = []
     
-    override var screenTitle: String { "Locations" }
-    
     internal lazy var customView: LocationsView = {
         let view = LocationsView()
         view.delegate = self
@@ -55,6 +53,7 @@ class LocationsListViewController: BaseViewController, LocationsListDisplayLogic
     // MARK: - Setup UI
     
     override func buildView() {
+        setTitle("Locations")
         self.view = customView
     }
     
@@ -67,7 +66,6 @@ class LocationsListViewController: BaseViewController, LocationsListDisplayLogic
             customView.showSpinner()
             await interactor?.fetchLocations(request: LocationsList.FetchLocations.Request())
         }
-        
     }
     
     func displayFetchedLocations(viewModel: LocationsList.FetchLocations.ViewModel) {
@@ -86,12 +84,6 @@ class LocationsListViewController: BaseViewController, LocationsListDisplayLogic
             )
             return
         }
-    }
-    
-    private func showErrorAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
 }
 
