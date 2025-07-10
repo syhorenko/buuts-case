@@ -110,4 +110,8 @@ extension LocationsListViewController: LocationTableView {
         cell.configure(with: location)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToLocationDetail(selectedLocationId: locations[indexPath.row].id)
+    }
 }

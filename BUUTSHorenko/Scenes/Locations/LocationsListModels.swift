@@ -25,12 +25,14 @@ enum LocationsList {
     }
 
     struct ResponsLocation {
+        let id: String
         let name: String?
         let latitude: Double
         let longitude: Double
     }
     
     struct DisplayedLocation {
+        let id: String
         let name: String
         let coordinates: String
     }

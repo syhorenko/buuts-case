@@ -18,6 +18,7 @@ class LocationsListPresenter: LocationsListPresentationLogic {
     func presentFetchedLocations(response: LocationsList.FetchLocations.Response) {
         let displayedLocations = response.locations.map {
             LocationsList.DisplayedLocation(
+                id: $0.id,
                 name: $0.name ?? "<Unknown>",
                 coordinates: "Lat: \(String(format: "%.4f", $0.latitude)), Lon: \(String(format: "%.4f", $0.longitude))"
             )

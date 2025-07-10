@@ -12,10 +12,12 @@ protocol LocationsListBusinessLogic {
 }
 
 protocol LocationsListDataStore {
-    // var name: String { get set }
+    var selectedLocation: [LocationsList.ResponsLocation] { get set }
 }
 
 class LocationsListInteractor: LocationsListBusinessLogic, LocationsListDataStore {
+    var selectedLocation: [LocationsList.ResponsLocation] = []
+    
     var presenter: LocationsListPresentationLogic?
     var worker: LocationsListWorker
     // var name: String = ""
@@ -29,11 +31,13 @@ class LocationsListInteractor: LocationsListBusinessLogic, LocationsListDataStor
             let locations = try await worker.loadLocations()
             let responseLocations = locations.map {
                 LocationsList.ResponsLocation(
+                    id: $0.id,
                     name: $0.name,
                     latitude: $0.latitude,
                     longitude: $0.longitude
                 )
             }
+            selectedLocation = responseLocations
             let response = LocationsList.FetchLocations.Response(locations: responseLocations)
             presenter?.presentFetchedLocations(response: response)
         } catch {

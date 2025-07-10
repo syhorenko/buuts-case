@@ -8,7 +8,7 @@
 import UIKit
 
 @objc protocol LocationsListRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToLocationDetail(selectedLocationId: String)
 }
 
 protocol LocationsListDataPassing {
@@ -21,32 +21,22 @@ class LocationsListRouter: NSObject, LocationsListRoutingLogic, LocationsListDat
     
     // MARK: Routing
     
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
-    // {
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    // }
-    
-    // MARK: Navigation
-    
-    // unc navigateToSomewhere(source: LocationsListViewController, destination: SomewhereViewController)
-    // {
-    //  source.show(destination, sender: nil)
-    // }
-    
-    // MARK: Passing data
-    
-    // func passDataToSomewhere(source: LocationsListDataStore, destination: inout SomewhereDataStore)
-    // {
-    //  destination.name = source.name
-    // }
+    func routeToLocationDetail(selectedLocationId: String){
+        let destinationVC = LocationDetailViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToLocationDetail(selectedLocationId: selectedLocationId, destination: &destinationDS)
+        navigateToLocationDetail(source: viewController!, destination: destinationVC)
+    }
+
+    private func navigateToLocationDetail(source: LocationsListViewController, destination: LocationDetailViewController) {
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
+
+    private func passDataToLocationDetail(selectedLocationId: String, destination: inout LocationDetailDataStore) {
+        guard let selectedLocation = dataStore?.selectedLocation.first(where: { $0.id == selectedLocationId }) else { return }
+        // TODO: LocationsList.DisplayedLocation should not contain latitude, longitude it should operate with id. When DB is implemented rework it.
+        let locationDetail = LocationDetail.LocationDetailModel(id: selectedLocation.id, name: selectedLocation.name, latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
+        
+        destination.location = locationDetail
+    }
 }
