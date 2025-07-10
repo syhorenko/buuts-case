@@ -42,6 +42,7 @@ Intro:
 Future improvements and TODO's':
     - Add Core Data and store there Locations
     - Coverege 100% with unit tests
+    - UI tests
     - Add documentation
     - Add localization
     - Add images
@@ -53,3 +54,4 @@ Future improvements and TODO's':
         // First we try to make API call to fetch the most recent Locations and store them to DB
     - LocationDetailWorker // TODO: Add caching of the image (or saving to DB)
     - LocationsListRouter // TODO: LocationsList.DisplayedLocation should not contain latitude, longitude it should operate with id. When DB is implemented rework it.
+    - UNREACHABLE goal: remove all lint warnings or remove lint :-D
