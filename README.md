@@ -1,8 +1,8 @@
 Case:
     
     Create a small test app with a list of locations. Your app should fetch the locations from https://raw.githubusercontent.com/abnamrocoesd/assignment-ios/main/locations.json
-Once opened, the app should show the list of locations in a list view.
-The use of UIKit is mandatory as a foundation, but a small amount of SwiftUI is allowed.’
+    Once opened, the app should show the list of locations in a list view.
+    The use of UIKit is mandatory as a foundation, but a small amount of SwiftUI is allowed.’
 
 
 Intro:
@@ -38,10 +38,10 @@ Intro:
             <It represents screens and navigation between scenes>
             <After finishing feature add it to storyboard>
             <Later can be used as addition to UI test>
-        
 Future improvements and TODO's':
-    - Add Core Data and store there Locations
-    - Coverege 100% with unit tests
+
+    - Add Core Data and store there Locations   
+        - Coverege 100% with unit tests
     - UI tests
     - Add documentation
     - Add localization
